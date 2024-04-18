@@ -8,11 +8,12 @@ import Switch from "./componenets/Switch";
 function App() {
   return (
     <>
-      <Router>
-        <div>Hi</div>
-        <Navigation />
-        <Switch />
-      </Router>
+      <div className="main">
+        <Router>
+          <Navigation />
+          <Switch />
+        </Router>
+      </div>
     </>
   );
 }
