@@ -1,0 +1,27 @@
+.main__my-expenses-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.main__my-expenses-container {
+  background-color: #c1e7fc;
+  width: 80rem;
+  height: 60rem;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main__my-expenses-grid {
+  background-color: white;
+  width: 70rem;
+  height: 50rem;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: repeat(6, 12rem);
+  justify-content: center;
+  text-align: center;
+}

@@ -1,16 +1,24 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import ExpensesMenu from "./ExpensesMenu";
+import Switch from "./Switch";
 
 function Navigation() {
-  const [test, setTest] = useState(false);
+  const [expensesMenu, setExpensesMenu] = useState(false);
 
-  const lowerMenu = () => {
-    setTest(true);
+  const displayMenu = () => {
+    setExpensesMenu(true);
   };
 
   const removeMenu = () => {
-    setTest(false);
+    setExpensesMenu(false);
+  };
+
+  const [activeMenu, setActiveMenu] = useState("myExpenses");
+
+  const handleMenuSelect = (menu) => {
+    setActiveMenu(menu);
   };
 
   return (
@@ -24,7 +32,11 @@ function Navigation() {
             <Link className="main_nav-links" to="/myPages" onClick={removeMenu}>
               My pages
             </Link>
-            <Link className="main_nav-links" to="/expenses" onClick={lowerMenu}>
+            <Link
+              className="main_nav-links"
+              to="/expenses"
+              onClick={displayMenu}
+            >
               Expenses
             </Link>
             <Link className="main_nav-links" to="/stocks" onClick={removeMenu}>
@@ -40,18 +52,17 @@ function Navigation() {
           </nav>
           <div className="main__nav-divider"></div>
           <div>
-            {test ? (
-              <div className="main__lower-navigation">
-                <button>My expenses</button>
-                <button>Total expenses</button>
-                <button>Total savings</button>
-              </div>
+            {expensesMenu ? (
+              <ExpensesMenu onMenuSelect={handleMenuSelect} />
             ) : (
               <div></div>
             )}
           </div>
         </div>
       </aside>
+      <div className="main__content-section">
+        <Switch activeMenu={activeMenu} />
+      </div>
     </>
   );
 }
