@@ -1,7 +1,7 @@
 import React from "react";
-import MyExpenses from "./MyExpenses";
-import TotalExpenses from "./TotalExpenses";
-import TotalSavings from "./TotalSavings";
+import MyExpenses from "../components/MyExpenses";
+import TotalExpenses from "../components/TotalExpenses";
+import TotalSavings from "../components/TotalSavings";
 import "./Expenses.css";
 
 function Expenses({ activeMenu }) {

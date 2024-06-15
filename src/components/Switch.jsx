@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./Home";
-import MyPages from "./MyPages";
-import Expenses from "./Expenses";
-import Stocks from "./Stocks";
-import SavingPlan from "./SavingPlan";
+import Home from "../pages/Home";
+import MyPages from "../pages/MyPages";
+import Expenses from "../pages/Expenses";
+import Stocks from "../pages/Stocks";
+import SavingPlan from "../pages/SavingPlan";
 
 function Switch({ activeMenu }) {
   return (
