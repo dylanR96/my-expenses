@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ExpensesMenu from "./ExpensesMenu";
-import Switch from "./Switch";
 
 function Navigation() {
+  const navigate = useNavigate();
   const [expensesMenu, setExpensesMenu] = useState(false);
 
   const displayMenu = () => {
@@ -26,29 +26,51 @@ function Navigation() {
       <aside className="main__navigation">
         <div className="main__navigation-container">
           <nav className="main__upper-navigation">
-            <Link className="main_nav-links" to="/" onClick={removeMenu}>
-              Home
-            </Link>
-            <Link className="main_nav-links" to="/myPages" onClick={removeMenu}>
-              My pages
-            </Link>
-            <Link
+            <button
               className="main_nav-links"
-              to="/expenses"
-              onClick={displayMenu}
+              onClick={() => {
+                navigate("/home");
+                removeMenu();
+              }}
+            >
+              Home
+            </button>
+            <button
+              className="main_nav-links"
+              onClick={() => {
+                navigate("/myPages");
+                removeMenu();
+              }}
+            >
+              My pages
+            </button>
+            <button
+              className="main_nav-links"
+              onClick={() => {
+                navigate("/myExpenses");
+                displayMenu();
+              }}
             >
               Expenses
-            </Link>
-            <Link className="main_nav-links" to="/stocks" onClick={removeMenu}>
-              Stocks
-            </Link>
-            <Link
+            </button>
+            <button
               className="main_nav-links"
-              to="/savingPlan"
-              onClick={removeMenu}
+              onClick={() => {
+                navigate("/stocks");
+                removeMenu();
+              }}
+            >
+              Stocks
+            </button>
+            <button
+              className="main_nav-links"
+              onClick={() => {
+                navigate("/savingPlan");
+                removeMenu();
+              }}
             >
               Saving plans
-            </Link>
+            </button>
           </nav>
           <div className="main__nav-divider"></div>
           <div>
@@ -60,9 +82,7 @@ function Navigation() {
           </div>
         </div>
       </aside>
-      <div className="main__content-section">
-        <Switch activeMenu={activeMenu} />
-      </div>
+      <div className="main__content-section"></div>
     </>
   );
 }
