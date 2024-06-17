@@ -1,7 +1,7 @@
 const app = require("./app.js");
 const mongoose = require("mongoose");
 const database = "expenses";
-const url = `mongodb://localhost:27018/${database}`;
+const url = `mongodb://localhost:27017/${database}`;
 
 mongoose
   .connect(url)
