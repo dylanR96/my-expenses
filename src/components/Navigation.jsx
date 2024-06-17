@@ -28,31 +28,46 @@ function Navigation() {
           <nav className="main__upper-navigation">
             <button
               className="main_nav-links"
-              onClick={(() => navigate("/home"), removeMenu)}
+              onClick={() => {
+                navigate("/home");
+                removeMenu();
+              }}
             >
               Home
             </button>
             <button
               className="main_nav-links"
-              onClick={(() => navigate("/myPages"), removeMenu)}
+              onClick={() => {
+                navigate("/myPages");
+                removeMenu();
+              }}
             >
               My pages
             </button>
             <button
               className="main_nav-links"
-              onClick={(() => navigate("/myExpenses"), removeMenu)}
+              onClick={() => {
+                navigate("/myExpenses");
+                displayMenu();
+              }}
             >
               Expenses
             </button>
             <button
               className="main_nav-links"
-              onClick={(() => navigate("/stocks"), removeMenu)}
+              onClick={() => {
+                navigate("/stocks");
+                removeMenu();
+              }}
             >
               Stocks
             </button>
             <button
               className="main_nav-links"
-              onClick={(() => navigate("/savingPlan"), removeMenu)}
+              onClick={() => {
+                navigate("/savingPlan");
+                removeMenu();
+              }}
             >
               Saving plans
             </button>
