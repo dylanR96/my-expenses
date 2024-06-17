@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ExpensesMenu from "./ExpensesMenu";
+import ExpensesMenu from "./Expenses/ExpensesMenu";
 
 function Navigation() {
   const navigate = useNavigate();
@@ -47,8 +47,8 @@ function Navigation() {
             <button
               className="main_nav-links"
               onClick={() => {
-                navigate("/myExpenses");
                 displayMenu();
+                navigate("/expenses");
               }}
             >
               Expenses

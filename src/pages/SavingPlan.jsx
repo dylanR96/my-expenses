@@ -1,7 +1,13 @@
 import React from "react";
+import Navigation from "../components/Navigation";
 
 function SavingPlan() {
-  return <div>Saving Plan</div>;
+  return (
+    <>
+      <Navigation />
+      <div>Saving plan</div>;
+    </>
+  );
 }
 
 export default SavingPlan;

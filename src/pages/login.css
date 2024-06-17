@@ -1,0 +1,15 @@
+.main {
+  max-width: 1280px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}

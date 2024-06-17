@@ -5,7 +5,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Home from "./pages/Home.jsx";
-import MyExpenses from "./components/MyExpenses.jsx";
+import Expenses from "./pages/Expenses.jsx";
 import MyPages from "./pages/MyPages.jsx";
 import SavingPlan from "./pages/SavingPlan.jsx";
 import Stocks from "./pages/Stocks.jsx";
@@ -31,9 +31,9 @@ const router = createBrowserRouter([
         loader: () => (document.title = "Expenses || My pages"),
       },
       {
-        path: "/myExpenses",
-        element: <MyExpenses />,
-        loader: () => (document.title = "Expenses || My expenses"),
+        path: "/expenses",
+        element: <Expenses />,
+        loader: () => (document.title = "Expenses || Expenses"),
       },
       {
         path: "/stocks",
