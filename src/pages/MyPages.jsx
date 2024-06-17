@@ -1,7 +1,13 @@
 import React from "react";
+import Navigation from "../components/Navigation";
 
 function MyPages() {
-  return <div>My Pages</div>;
+  return (
+    <>
+      <Navigation />
+      <div>My pages</div>;
+    </>
+  );
 }
 
 export default MyPages;
