@@ -15,7 +15,7 @@ const Login = () => {
       const res = await fetch(`http://localhost:8000/api/login`, {
         method: "POST",
         header: {
-          "Content-Type": "application,json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: existingEmail,
@@ -35,10 +35,10 @@ const Login = () => {
   const createUser = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:8000/api/signUp`, {
+      const res = await fetch(`http://localhost:8000/api/signup`, {
         method: "POST",
-        header: {
-          "Content-Type": "application,json",
+        headers: {
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           email: newEmail,
@@ -106,19 +106,15 @@ const Login = () => {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
-              <input
+              {/* <input
                 type="password"
                 name="password"
                 placeholder="Repeat password"
                 className="input-fields"
-              />
+              /> */}
               <h3>Forgot password?</h3>
               <div>
-                <input
-                  type="submit"
-                  value="Create account"
-                  onClick={() => setView("login")}
-                />
+                <button type="submit">Create account</button>
               </div>
             </form>
           )}
