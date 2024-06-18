@@ -12,10 +12,22 @@ const Login = () => {
         <div className="login-container">
           {view === "login" && (
             <form className="form">
-              <input type="email" name="email" placeholder="Email" />
-              <input type="password" name="password" placeholder="Password" />
-              <h3>Forgot password?</h3>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="input-fields"
+              />
               <div>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  className="input-fields"
+                />
+                <h3>Forgot password?</h3>
+              </div>
+              <div className="form-btns">
                 <button onClick={() => setView("signUp")}>
                   Create account
                 </button>
@@ -25,12 +37,23 @@ const Login = () => {
           )}
           {view === "signUp" && (
             <form className="form">
-              <input type="email" name="email" placeholder="Email" />
-              <input type="password" name="password" placeholder="Password" />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                className="input-fields"
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="input-fields"
+              />
               <input
                 type="password"
                 name="password"
                 placeholder="Repeat password"
+                className="input-fields"
               />
               <h3>Forgot password?</h3>
               <div>
@@ -42,9 +65,9 @@ const Login = () => {
               </div>
             </form>
           )}
-          <button onClick={() => navigate("/home")}>Home</button>
         </div>
       </div>
+      <button onClick={() => navigate("/home")}>Home</button>
     </>
   );
 };
