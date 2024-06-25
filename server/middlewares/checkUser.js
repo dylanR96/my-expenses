@@ -1,6 +1,6 @@
-import joi from "joi";
+const joi = require("joi");
 
-const checkUser = (req, res, next) => {
+const checkUser = async (req, res, next) => {
   const userSchema = joi.object({
     email: joi
       .string()
@@ -11,6 +11,12 @@ const checkUser = (req, res, next) => {
       .required(),
     password: joi.string().min(3).max(20).required(),
   });
+  try {
+    userSchema.validate(req.body);
+    next();
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = checkUser;
