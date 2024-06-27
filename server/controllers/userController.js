@@ -7,8 +7,14 @@ const signUp = async (req, res, next) => {
       email: email,
       password: password,
     });
-    await newUser.save();
-    res.status(200).send("User created");
+    const foundData = await users.findOne({ email: email });
+    if (foundData) {
+      console.log("Failed to create user!");
+      res.status(404).send("User was not created!");
+    } else {
+      await newUser.save();
+      res.status(200).send("User created");
+    }
   } catch (error) {
     console.log(error);
   }
@@ -17,24 +23,21 @@ const signUp = async (req, res, next) => {
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    console.log("No password or email");
     return res.status(404).send("Please enter username and password");
   }
   try {
     const foundData = await users.findOne({ email: email });
+    if (!foundData) {
+      res.status(404).send("User not found");
+    }
     foundData.verifyPassword(password, (err, valid) => {
       if (!valid) {
         console.log("Password incorrect");
         res.status(404).send("Incorrect username or password");
       } else {
-        console.log(err);
+        res.status(200).send("User found");
       }
     });
-    if (!foundData) {
-      res.status(404).send("User not found");
-    } else {
-      res.status(200).send("User found");
-    }
   } catch (error) {
     console.log(error);
   }
