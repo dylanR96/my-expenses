@@ -9,8 +9,11 @@ const addUserSchema = new Schema({
   password: {
     type: String,
     required: [true, "Password is required"],
+    bcrypt: true,
   },
 });
+
+addUserSchema.plugin(require("mongoose-bcrypt"));
 
 const users = mongoose.model("users", addUserSchema);
 module.exports = users;
