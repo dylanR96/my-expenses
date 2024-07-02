@@ -23,10 +23,13 @@ const Login = () => {
         }),
       });
       if (!res.ok) {
-        throw new Error("User does not exist");
+        const errorData = await res.json();
+        throw new Error(errorData.message);
       } else {
         navigate("/home");
       }
+      const responseData = await res.json();
+      console.log(responseData);
     } catch (error) {
       console.log(error);
     }
@@ -46,10 +49,13 @@ const Login = () => {
         }),
       });
       if (!res.ok) {
-        throw new Error("User was not created");
+        const errorData = await res.json;
+        throw new Error(errorData.message);
       } else {
         setView("login");
       }
+      const responseData = await res.json();
+      console.log(responseData);
     } catch (error) {
       console.log(error);
     }

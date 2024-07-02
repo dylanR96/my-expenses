@@ -10,7 +10,7 @@ const signUp = async (req, res, next) => {
     const foundData = await users.findOne({ email: email });
     if (foundData) {
       console.log("Failed to create user!");
-      res.status(404).send("User was not created!");
+      res.status(404).send({ message: "User was not created!" });
     } else {
       await newUser.save();
       res.status(200).send("User created");
@@ -23,17 +23,19 @@ const signUp = async (req, res, next) => {
 const login = async (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    return res.status(404).send("Please enter username and password");
+    return res
+      .status(404)
+      .send({ message: "Please enter username and password" });
   }
   try {
     const foundData = await users.findOne({ email: email });
     if (!foundData) {
-      res.status(404).send("User not found");
+      res.status(404).send({ message: "User not found" });
     }
     foundData.verifyPassword(password, (err, valid) => {
       if (!valid) {
         console.log("Password incorrect");
-        res.status(404).send("Incorrect username or password");
+        res.status(404).send({ message: "Incorrect username or password" });
       } else {
         res.status(200).send("User found");
       }
