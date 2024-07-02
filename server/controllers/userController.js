@@ -2,6 +2,11 @@ const users = require("../models/modelUser.js");
 
 const signUp = async (req, res, next) => {
   const { email, password } = req.body;
+  if (!email || !password) {
+    return res
+      .status(404)
+      .send({ message: "Please enter username and password" });
+  }
   try {
     const newUser = new users({
       email: email,

@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./login.css";
+import toast, { Toaster } from "react-hot-toast";
+
 const Login = () => {
   const navigate = useNavigate();
   const [view, setView] = useState("login");
@@ -9,6 +11,10 @@ const Login = () => {
   const [existingPassword, setExistingPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  let failureMessage = "Hi";
+  const notifySuccess = () => toast.success("User was successfully created.");
+  const notifyFailure = () => toast.error(failureMessage);
+
   const loginUser = async (e) => {
     e.preventDefault();
     try {
@@ -24,6 +30,8 @@ const Login = () => {
       });
       if (!res.ok) {
         const errorData = await res.json();
+        failureMessage = errorData.message;
+        notifyFailure();
         throw new Error(errorData.message);
       } else {
         navigate("/home");
@@ -49,9 +57,12 @@ const Login = () => {
         }),
       });
       if (!res.ok) {
-        const errorData = await res.json;
+        const errorData = await res.json();
+        failureMessage = errorData.message;
+        notifyFailure();
         throw new Error(errorData.message);
       } else {
+        notifySuccess();
         setView("login");
       }
       const responseData = await res.json();
@@ -64,6 +75,7 @@ const Login = () => {
   return (
     <>
       <div className="main">
+        <Toaster />
         <div className="login-container">
           {view === "login" && (
             <form className="form" onSubmit={loginUser}>
