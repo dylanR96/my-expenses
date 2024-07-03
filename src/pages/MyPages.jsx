@@ -5,7 +5,7 @@ function MyPages() {
   return (
     <>
       <Navigation />
-      <div>My pages</div>;
+      <div>My pages</div>
     </>
   );
 }

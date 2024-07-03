@@ -12,8 +12,11 @@ const checkUser = async (req, res, next) => {
         "string.empty": "Email is required and cannot be empty.",
       })
       .required(),
+    username: joi.string().min(3).max(20).required().messages({
+      "string.empty": "Username is required and cannot be empty.",
+    }),
     password: joi.string().min(3).max(20).required().messages({
-      "string.empty": "password is required and cannot be empty.",
+      "string.empty": "Password is required and cannot be empty.",
     }),
   });
   const { error } = userSchema.validate(req.body);

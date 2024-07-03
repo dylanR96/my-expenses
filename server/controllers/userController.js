@@ -1,8 +1,8 @@
 const users = require("../models/modelUser.js");
 
 const signUp = async (req, res, next) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
+  const { email, username, password } = req.body;
+  if (!email || !username || !password) {
     return res
       .status(404)
       .send({ message: "Please enter username and password" });
@@ -10,15 +10,16 @@ const signUp = async (req, res, next) => {
   try {
     const newUser = new users({
       email: email,
+      username: username,
       password: password,
     });
-    const foundData = await users.findOne({ email: email });
+    const foundData = await users.findOne({ username: username });
     if (foundData) {
       console.log("Failed to create user!");
       res.status(404).send({ message: "User was not created!" });
     } else {
       await newUser.save();
-      res.status(200).send("User created");
+      res.status(200).send("User was created");
     }
   } catch (error) {
     console.log(error);
@@ -26,14 +27,14 @@ const signUp = async (req, res, next) => {
 };
 
 const login = async (req, res, next) => {
-  const { email, password } = req.body;
-  if (!email || !password) {
+  const { username, password } = req.body;
+  if (!username || !password) {
     return res
       .status(404)
       .send({ message: "Please enter username and password" });
   }
   try {
-    const foundData = await users.findOne({ email: email });
+    const foundData = await users.findOne({ username: username });
     if (!foundData) {
       res.status(404).send({ message: "User not found" });
     }
