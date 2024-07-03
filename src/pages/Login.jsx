@@ -7,9 +7,10 @@ import toast, { Toaster } from "react-hot-toast";
 const Login = () => {
   const navigate = useNavigate();
   const [view, setView] = useState("login");
-  const [existingEmail, setExistingEmail] = useState("");
+  const [existingUsername, setExistingUsername] = useState("");
   const [existingPassword, setExistingPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
+  const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   let failureMessage = "Hi";
   const notifySuccess = () => toast.success("User was successfully created.");
@@ -24,7 +25,7 @@ const Login = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: existingEmail,
+          username: existingUsername,
           password: existingPassword,
         }),
       });
@@ -53,6 +54,7 @@ const Login = () => {
         },
         body: JSON.stringify({
           email: newEmail,
+          username: newUsername,
           password: newPassword,
         }),
       });
@@ -80,12 +82,12 @@ const Login = () => {
           {view === "login" && (
             <form className="form" onSubmit={loginUser}>
               <input
-                type="email"
-                name="email"
-                placeholder="Email"
+                type="text"
+                name="username"
+                placeholder="Username"
                 className="input-fields"
-                value={existingEmail}
-                onChange={(e) => setExistingEmail(e.target.value)}
+                value={existingUsername}
+                onChange={(e) => setExistingUsername(e.target.value)}
               />
               <div>
                 <input
@@ -117,6 +119,14 @@ const Login = () => {
                 onChange={(e) => setNewEmail(e.target.value)}
               />
               <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                className="input-fields"
+                value={newUsername}
+                onChange={(e) => setNewUsername(e.target.value)}
+              />
+              <input
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -138,7 +148,6 @@ const Login = () => {
           )}
         </div>
       </div>
-      <button onClick={() => navigate("/home")}>Home</button>
     </>
   );
 };
