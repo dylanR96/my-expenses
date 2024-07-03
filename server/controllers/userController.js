@@ -13,10 +13,15 @@ const signUp = async (req, res, next) => {
       username: username,
       password: password,
     });
-    const foundData = await users.findOne({ username: username });
-    if (foundData) {
+    const foundEmail = await users.findOne({ email: email });
+    const foundUsername = await users.findOne({ username: username });
+
+    if (foundEmail) {
       console.log("Failed to create user!");
-      res.status(404).send({ message: "User was not created!" });
+      res.status(404).send({ message: "Email is already registered!" });
+    } else if (foundUsername) {
+      console.log("Failed to create user!");
+      res.status(404).send({ message: "Username already exists!" });
     } else {
       await newUser.save();
       res.status(200).send("User was created");

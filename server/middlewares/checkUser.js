@@ -1,6 +1,6 @@
 const joi = require("joi");
 
-const checkUser = async (req, res, next) => {
+const checkSignUp = async (req, res, next) => {
   const userSchema = joi.object({
     email: joi
       .string()
@@ -27,4 +27,21 @@ const checkUser = async (req, res, next) => {
   }
 };
 
-module.exports = checkUser;
+const checkLogin = async (req, res, next) => {
+  const userSchema = joi.object({
+    username: joi.string().min(3).max(20).required().messages({
+      "string.empty": "Username is required and cannot be empty.",
+    }),
+    password: joi.string().min(3).max(20).required().messages({
+      "string.empty": "Password is required and cannot be empty.",
+    }),
+  });
+  const { error } = userSchema.validate(req.body);
+  if (error) {
+    return res.status(400).send({ message: error.message });
+  } else {
+    next();
+  }
+};
+
+module.exports = { checkSignUp, checkLogin };
