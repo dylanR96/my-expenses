@@ -9,14 +9,14 @@ const checkSignUp = async (req, res, next) => {
         tlds: { allow: ["com", "net", "org", "se"] },
       })
       .messages({
-        "string.empty": "Email is required and cannot be empty.",
+        "string.empty": "Please enter email, username and password.",
       })
       .required(),
     username: joi.string().min(3).max(20).required().messages({
-      "string.empty": "Username is required and cannot be empty.",
+      "string.empty": "Please enter email, username and password.",
     }),
     password: joi.string().min(3).max(20).required().messages({
-      "string.empty": "Password is required and cannot be empty.",
+      "string.empty": "Please enter email, username and password.",
     }),
   });
   const { error } = userSchema.validate(req.body);
@@ -30,10 +30,10 @@ const checkSignUp = async (req, res, next) => {
 const checkLogin = async (req, res, next) => {
   const userSchema = joi.object({
     username: joi.string().min(3).max(20).required().messages({
-      "string.empty": "Username is required and cannot be empty.",
+      "string.empty": "Please enter username and password.",
     }),
     password: joi.string().min(3).max(20).required().messages({
-      "string.empty": "Password is required and cannot be empty.",
+      "string.empty": "Please enter username and password.",
     }),
   });
   const { error } = userSchema.validate(req.body);

@@ -2,11 +2,6 @@ const users = require("../models/modelUser.js");
 
 const signUp = async (req, res, next) => {
   const { email, username, password } = req.body;
-  if (!email || !username || !password) {
-    return res
-      .status(404)
-      .send({ message: "Please enter username and password" });
-  }
   try {
     const newUser = new users({
       email: email,
@@ -33,11 +28,6 @@ const signUp = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   const { username, password } = req.body;
-  if (!username || !password) {
-    return res
-      .status(404)
-      .send({ message: "Please enter username and password" });
-  }
   try {
     const foundData = await users.findOne({ username: username });
     if (!foundData) {
