@@ -1,24 +1,17 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ExpenseMenuContext } from "../App";
 import { useNavigate } from "react-router-dom";
 import ExpensesMenu from "./Expenses/ExpensesMenu";
 
 function Navigation() {
   const navigate = useNavigate();
-  const [expensesMenu, setExpensesMenu] = useState(false);
-
+  const { expenseMenu, setExpenseMenu } = useContext(ExpenseMenuContext);
   const displayMenu = () => {
-    setExpensesMenu(true);
+    setExpenseMenu(<ExpensesMenu />);
   };
 
   const removeMenu = () => {
-    setExpensesMenu(false);
-  };
-
-  const [activeMenu, setActiveMenu] = useState("myExpenses");
-
-  const handleMenuSelect = (menu) => {
-    setActiveMenu(menu);
+    setExpenseMenu("");
   };
 
   return (
@@ -73,13 +66,7 @@ function Navigation() {
             </button>
           </nav>
           <div className="main__nav-divider"></div>
-          <div>
-            {expensesMenu ? (
-              <ExpensesMenu onMenuSelect={handleMenuSelect} />
-            ) : (
-              <div></div>
-            )}
-          </div>
+          <div>{expenseMenu}</div>
         </div>
       </aside>
       <div className="main__content-section"></div>

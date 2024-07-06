@@ -1,4 +1,5 @@
-import React from "react";
+import { useContext, useState } from "react";
+import { ExpenseMenuContext } from "../App";
 import MyExpenses from "../components/Expenses/MyExpenses";
 import TotalExpenses from "../components/Expenses/TotalExpenses";
 import TotalSavings from "../components/Expenses/TotalSavings";
@@ -6,6 +7,7 @@ import "./Expenses.css";
 import Navigation from "../components/Navigation";
 
 function Expenses({ activeMenu }) {
+  const { expenseMenu, setExpenseMenu } = useContext(ExpenseMenuContext);
   return (
     <>
       <Navigation />
