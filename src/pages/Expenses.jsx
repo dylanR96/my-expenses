@@ -1,23 +1,20 @@
-import { useContext, useState } from "react";
-import { ExpenseMenuContext } from "../App";
+import { useState, createContext } from "react";
 import MyExpenses from "../components/Expenses/MyExpenses";
-import TotalExpenses from "../components/Expenses/TotalExpenses";
-import TotalSavings from "../components/Expenses/TotalSavings";
 import "./Expenses.css";
 import Navigation from "../components/Navigation";
 
-function Expenses({ activeMenu }) {
-  const { expenseMenu, setExpenseMenu } = useContext(ExpenseMenuContext);
+export const ExpensesContext = createContext();
+
+function Expenses() {
+  const [expensePage, setExpensePage] = useState(<MyExpenses />);
   return (
     <>
-      <Navigation />
-      <div className="main__my-expenses-wrapper">
-        <div className="main__my-expenses-container">
-          {activeMenu === "myExpenses" && <MyExpenses />}
-          {activeMenu === "myTotal" && <TotalExpenses />}
-          {activeMenu === "mySavings" && <TotalSavings />}
+      <ExpensesContext.Provider value={{ expensePage, setExpensePage }}>
+        <Navigation />
+        <div className="main__my-expenses-wrapper">
+          <div className="main__my-expenses-container">{expensePage}</div>
         </div>
-      </div>
+      </ExpensesContext.Provider>
     </>
   );
 }

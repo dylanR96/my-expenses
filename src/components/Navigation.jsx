@@ -40,8 +40,8 @@ function Navigation() {
             <button
               className="main_nav-links"
               onClick={() => {
-                displayMenu();
                 navigate("/expenses");
+                displayMenu();
               }}
             >
               Expenses
