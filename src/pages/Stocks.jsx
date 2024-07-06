@@ -5,7 +5,7 @@ function Stocks() {
   return (
     <>
       <Navigation />
-      <div>Stocks</div>;
+      <div>Stocks</div>
     </>
   );
 }

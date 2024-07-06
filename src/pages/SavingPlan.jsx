@@ -5,7 +5,7 @@ function SavingPlan() {
   return (
     <>
       <Navigation />
-      <div>Saving plan</div>;
+      <div>Saving plan</div>
     </>
   );
 }
