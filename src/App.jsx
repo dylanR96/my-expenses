@@ -1,13 +1,17 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState } from "react";
 import "./App.css";
 import { Outlet } from "react-router-dom";
 
+export const ExpenseMenuContext = createContext();
+
 function App() {
-  const myContent = createContext();
+  const [expenseMenu, setExpenseMenu] = useState("");
   return (
     <>
       <div className="main">
-        <Outlet />
+        <ExpenseMenuContext.Provider value={{ expenseMenu, setExpenseMenu }}>
+          <Outlet />
+        </ExpenseMenuContext.Provider>
       </div>
     </>
   );
