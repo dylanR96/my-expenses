@@ -6,12 +6,13 @@ import ExpensesMenu from "./Expenses/ExpensesMenu";
 function Navigation() {
   const navigate = useNavigate();
   const { expenseMenu, setExpenseMenu } = useContext(ExpenseMenuContext);
+
   const displayMenu = () => {
     setExpenseMenu(<ExpensesMenu />);
   };
 
   const removeMenu = () => {
-    setExpenseMenu("");
+    setExpenseMenu(null);
   };
 
   return (

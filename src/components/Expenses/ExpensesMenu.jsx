@@ -1,12 +1,14 @@
-import { useContext, useState } from "react";
-import { ExpensesContext } from "../../pages/Expenses";
+import { useContext, useState, useEffect } from "react";
+import { ExpensesContext } from "../../App";
 import TotalExpenses from "./TotalExpenses";
 import TotalSavings from "./TotalSavings";
+import MyExpenses from "./MyExpenses";
 
 function ExpensesMenu() {
   const { expensePage, setExpensePage } = useContext(ExpensesContext);
+
   const displayMyExpenses = () => {
-    setExpensePage(expensePage);
+    setExpensePage(<MyExpenses />);
   };
 
   const displayTotalExpenses = () => {
