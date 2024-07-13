@@ -32,15 +32,14 @@ const login = async (req, res, next) => {
     const foundData = await users.findOne({ username: username });
     if (!foundData) {
       res.status(404).send({ message: "User not found" });
-    }
-    foundData.verifyPassword(password, (err, valid) => {
-      if (!valid) {
-        console.log("Password incorrect");
-        res.status(404).send({ message: "Incorrect username or password" });
-      } else {
-        res.status(200).send("User found");
-      }
-    });
+    } else
+      foundData.verifyPassword(password, (err, valid) => {
+        if (!valid) {
+          res.status(404).send({ message: "Incorrect username or password" });
+        } else {
+          res.status(200).send("User found");
+        }
+      });
   } catch (error) {
     console.log(error);
   }
